@@ -582,11 +582,11 @@ void remove_dc(int16_t *data, int length)
 {
 	int i;
 	int16_t ave;
-	long sum = 0L;
+	int64_t sum = 0L;
 	for (i=0; i < length; i+=2) {
 		sum += data[i];
 	}
-	ave = (int16_t)(sum / (long)(length));
+	ave = (int16_t)(sum / (int64_t)(length));
 	if (ave == 0) {
 		return;}
 	for (i=0; i < length; i+=2) {
@@ -632,10 +632,10 @@ void downsample_iq(int16_t *data, int length)
 	//remove_dc(data+1, length-1);
 }
 
-long real_conj(int16_t real, int16_t imag)
+int64_t real_conj(int16_t real, int16_t imag)
 /* real(n * conj(n)) */
 {
-	return ((long)real*(long)real + (long)imag*(long)imag);
+	return ((int64_t)real*(int64_t)real + (int64_t)imag*(int64_t)imag);
 }
 
 void scanner(void)
